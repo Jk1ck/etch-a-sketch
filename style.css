@@ -28,6 +28,9 @@ body{
 }
 
 .main {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -64,7 +67,28 @@ body{
     -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3) inset;
 }
 
+.buttons-container {
+    display: flex;
+    width: 70vh;
+    gap: 150px;
+}
 
+.buttons-container button {
+    flex: 1;
+    height: 54px;
+    border: 3px solid rgb(38, 33, 58);
+    border-radius: 14px;
+    background-color: #2d3e58;
+    color: aliceblue;
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.buttons-container button:hover{
+    border: 2px solid rgb(125, 125, 153);
+    cursor: pointer;
+}
 
 .footer{
     height: 45px;

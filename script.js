@@ -1,16 +1,18 @@
 const gridContainer = document.getElementById('grid-container');
+const resizeBtn = document.getElementById('resize-btn');
+const clearBtn = document.getElementById('clear-btn');
 
 let gridSize = 144;
 let gridContainerHeight = gridContainer.offsetHeight;
-let divSize = Math.floor(gridContainerHeight/Math.sqrt(gridSize));
 
 
 function createGrid(gridSize){
     let arrayDiv = new Array();
     let lastColoredDiv;
+    let divSize = Math.floor(gridContainerHeight/Math.sqrt(gridSize));
     for (let i = 1; i <= gridSize; i++){
         arrayDiv[i] = document.createElement('div');
-        arrayDiv[i].id = 'div' + i;
+        arrayDiv[i].className = 'gridDivs';
         arrayDiv[i].style.height = divSize + "px";
         arrayDiv[i].style.width = divSize +"px";
         gridContainer.appendChild(arrayDiv[i]);
@@ -61,4 +63,25 @@ function darkenColor(color, percent) {
     const hex = rgb.map(c => Math.round(c).toString(16).padStart(2, '0')).join('');
   
     return `#${hex}`; 
-}
+};
+
+resizeBtn.addEventListener('click', () => {
+    let input = 1000;
+    while (input>100) {
+        input = prompt("Squares per side? (shouldn't be over 100)");
+    };
+    gridSize = Math.pow(input, 2);
+    const arrayDiv = document.querySelectorAll('.gridDivs');
+    for (const div of arrayDiv) {
+        div.remove();
+    }
+    createGrid(gridSize);
+});
+
+clearBtn.addEventListener('click', () =>{
+    const arrayDiv = document.querySelectorAll('.gridDivs');
+    for (const div of arrayDiv) {
+        div.remove();
+    }
+    createGrid(gridSize);
+});
